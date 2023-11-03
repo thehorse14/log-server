@@ -30,6 +30,10 @@ const upload = multer({
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Express on Vercel");
+});
+
 app.post('/upload', upload.any(), (req, res) => {
   if (req.fileFilterError || (!req.files || req.files.length === 0)) {
     return res.status(400).json({ error: req.fileFilterError || 'No files uploaded.' });
